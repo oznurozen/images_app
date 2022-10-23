@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react'
 import Search from './Components/Search';
 import axios from "axios"
+import ImageList from './Components/Image';
 
 class App extends Component {
   state=
@@ -21,14 +22,14 @@ class App extends Component {
     })
       // console.log(result.data.result);
       this.setState({
-        images:result.data.result
+        images:result.data.results
       });
   }
   render() {
     return (
       <div className='app-container'>
         <Search onSearchImage={this.onSearchImage} />
-        {this.state.images.length} adet resim bulundu
+        <ImageList images={this.state.images} />
       </div>
     )
   }
