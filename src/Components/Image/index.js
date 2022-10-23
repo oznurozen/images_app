@@ -8,7 +8,7 @@ const ImageList = ({images}) => {
             
     });
   return (
-    <div>
+    <div className='image-list-container'>
         {preparedImageList}
     </div>
   )
