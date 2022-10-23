@@ -1,15 +1,34 @@
 import './App.css';
 import React, { Component } from 'react'
 import Search from './Components/Search';
+import axios from "axios"
 
 class App extends Component {
-  onSearchImage = search => {
-    console.log('App: ' + search )
+  state=
+  {
+    images:[]
+  };
+
+  onSearchImage = async(search) => {
+    console.log('App: ' + search );
+    const result = await axios.get('https://api.unsplash.com/search/photos',{
+      params:{
+        query : search
+      },
+      headers:{
+        Authorization: 'Client-ID qYKV2Rc-v0EuUgNXhYa-DwGLw0pZUy0dcsJvaGsd8Mw'
+      }
+    })
+      // console.log(result.data.result);
+      this.setState({
+        images:result.data.result
+      });
   }
   render() {
     return (
       <div className='app-container'>
         <Search onSearchImage={this.onSearchImage} />
+        {this.state.images.length} adet resim bulundu
       </div>
     )
   }
